@@ -1,15 +1,15 @@
-import { PerfilType } from "../types.ts";
+import { UserType } from "../types.ts";
 import UserCard from "./UserCard.tsx";
 import { FunctionComponent } from "preact";
 
 type GalleryProps = {
-  users: PerfilType[];
+  users: UserType[];
 };
 
 const Gallery: FunctionComponent<GalleryProps> = ({ users }) => {
   return (
     <div class="galleryContainer">
-      {users.map((user) => <UserCard user={user} />)}
+      {users.map((user) => <UserCard key={user._id} user={user} />)}
     </div>
   );
 };

@@ -1,10 +1,10 @@
 import { FunctionComponent } from "preact";
-import { PerfilType } from "../types.ts";
+import { UserType } from "../types.ts";
 import { useState } from "preact/hooks";
 
 type Props = {
   hobbies: string[];
-  users: PerfilType[];
+  users: UserType[];
 };
 
 type Category = "name" | "age" | "sex" | "hobbies";

@@ -1,10 +1,15 @@
-export type PerfilType = {
+export type UserType = {
   _id: string;
   name: string;
   age: number;
-  sex: "Female" | "male";
+  sex: string;
   description: string;
   hobbies: string[];
   photo: string;
-  comments: string[];
+  comments: CommentType[];
+};
+
+export type CommentType = {
+  user: string;
+  message: string;
 };

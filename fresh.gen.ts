@@ -2,32 +2,38 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
+import * as $_name_ from "./routes/[name].tsx";
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $_layout from "./routes/_layout.tsx";
+import * as $api_name_comment from "./routes/api/[name]/comment.ts";
+import * as $api_name_index from "./routes/api/[name]/index.ts";
 import * as $api_index from "./routes/api/index.ts";
 import * as $api_login from "./routes/api/login.ts";
 import * as $index from "./routes/index.tsx";
 import * as $login from "./routes/login.tsx";
 import * as $register from "./routes/register.tsx";
-import * as $test from "./routes/test.ts";
+import * as $GalleryFilter from "./islands/GalleryFilter.tsx";
 import * as $LoginForm from "./islands/LoginForm.tsx";
 import * as $RegisterForm from "./islands/RegisterForm.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
   routes: {
+    "./routes/[name].tsx": $_name_,
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
     "./routes/_layout.tsx": $_layout,
+    "./routes/api/[name]/comment.ts": $api_name_comment,
+    "./routes/api/[name]/index.ts": $api_name_index,
     "./routes/api/index.ts": $api_index,
     "./routes/api/login.ts": $api_login,
     "./routes/index.tsx": $index,
     "./routes/login.tsx": $login,
     "./routes/register.tsx": $register,
-    "./routes/test.ts": $test,
   },
   islands: {
+    "./islands/GalleryFilter.tsx": $GalleryFilter,
     "./islands/LoginForm.tsx": $LoginForm,
     "./islands/RegisterForm.tsx": $RegisterForm,
   },

@@ -6,4 +6,5 @@ export type PerfilType = {
   description: string;
   hobbies: string[];
   photo: string;
+  comments: string[];
 };

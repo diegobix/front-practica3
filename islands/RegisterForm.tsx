@@ -1,8 +1,5 @@
 import { useState } from "preact/hooks";
-import { JSX } from "preact";
 import { FunctionComponent } from "preact";
-
-
 
 const RegisterForm: FunctionComponent = () => {
   const [name, setName] = useState<string>("");
@@ -10,17 +7,45 @@ const RegisterForm: FunctionComponent = () => {
   const [age, setAge] = useState<number>(0);
   const [sex, setSex] = useState<string>("");
   const [description, setDescription] = useState<string>("");
-  const [hobbies, setHobbies] = useState<string>("");
+  const [hobbiesString, setHobbiesString] = useState<string>("");
   const [photo, setPhoto] = useState<string>("");
+  const [error, setError] = useState<string>("");
 
-  const handleSubmit = async (e: JSX.TargetedSubmitEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // Handle form submission
+  const handleSubmit = async () => {
+    if (
+      !name || !password || !age || !sex || !description || !hobbiesString ||
+      !photo
+    ) {
+      setError("Every field is required");
+      return;
+    }
+    const hobbies = hobbiesString.split(",").map((h) => h.trim());
+    const data = {
+      name,
+      password,
+      age,
+      sex,
+      description,
+      hobbies,
+      photo,
+      comments: [] as string[],
+    };
+    const url = "https://lovers.deno.dev/";
+    const res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    if (res.status !== 201) {
+      setError("Lover couldn't be created");
+      return;
+    }
+    setError("Lover added");
   };
 
   return (
     <div class="registerFormContainer">
-      <form onSubmit={handleSubmit}>
+      <div class="form">
         <label htmlFor="name">Name</label>
         <input
           type="text"
@@ -28,7 +53,10 @@ const RegisterForm: FunctionComponent = () => {
           id="name"
           autoComplete="off"
           value={name}
-          onChange={(e) => setName(e.currentTarget.value)}
+          onInput={(e) => {
+            setName(e.currentTarget.value);
+            setError("");
+          }}
         />
 
         <label htmlFor="password">Password</label>
@@ -38,7 +66,10 @@ const RegisterForm: FunctionComponent = () => {
           id="password"
           autoComplete="off"
           value={password}
-          onChange={(e) => setPassword(e.currentTarget.value)}
+          onInput={(e) => {
+            setPassword(e.currentTarget.value);
+            setError("");
+          }}
         />
 
         <label htmlFor="age">Age</label>
@@ -48,7 +79,12 @@ const RegisterForm: FunctionComponent = () => {
           id="age"
           autoComplete="off"
           value={age}
-          onChange={(e) => setAge(Number(e.currentTarget.value))}
+          min={0}
+          max={130}
+          onInput={(e) => {
+            setAge(Number(e.currentTarget.value));
+            setError("");
+          }}
         />
 
         <label htmlFor="sex">Sex</label>
@@ -58,7 +94,10 @@ const RegisterForm: FunctionComponent = () => {
           id="sex"
           autoComplete="off"
           value={sex}
-          onChange={(e) => setSex(e.currentTarget.value)}
+          onInput={(e) => {
+            setSex(e.currentTarget.value);
+            setError("");
+          }}
         />
 
         <label htmlFor="description">Description</label>
@@ -68,7 +107,10 @@ const RegisterForm: FunctionComponent = () => {
           id="description"
           autoComplete="off"
           value={description}
-          onChange={(e) => setDescription(e.currentTarget.value)}
+          onInput={(e) => {
+            setDescription(e.currentTarget.value);
+            setError("");
+          }}
         />
 
         <label htmlFor="hobbies">Hobbies</label>
@@ -77,8 +119,11 @@ const RegisterForm: FunctionComponent = () => {
           name="hobbies"
           id="hobbies"
           autoComplete="off"
-          value={hobbies}
-          onChange={(e) => setHobbies(e.currentTarget.value)}
+          value={hobbiesString}
+          onInput={(e) => {
+            setHobbiesString(e.currentTarget.value);
+            setError("");
+          }}
         />
 
         <label htmlFor="photo">Photo url</label>
@@ -88,11 +133,15 @@ const RegisterForm: FunctionComponent = () => {
           id="photo"
           accept="image/*"
           value={photo}
-          onChange={(e) => setPhoto(e.currentTarget.value)}
+          onInput={(e) => {
+            setPhoto(e.currentTarget.value);
+            setError("");
+          }}
         />
 
-        <button type="submit">Registrate</button>
-      </form>
+        <button onClick={handleSubmit}>Registrate</button>
+        {error && <p>{error}</p>}
+      </div>
     </div>
   );
 };

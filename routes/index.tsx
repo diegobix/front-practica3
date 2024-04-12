@@ -1,7 +1,8 @@
 import { Handlers } from "$fresh/server.ts";
 import { PageProps } from "$fresh/server.ts";
+import Gallery from "../components/Gallery.tsx";
 import MainContainer from "../components/MainContainer.tsx";
-import Perfil from "../components/Perfil.tsx";
+import UserCard from "../components/UserCard.tsx";
 import { PerfilType } from "../types.ts";
 
 export const handler: Handlers<PerfilType[]> = {
@@ -19,12 +20,12 @@ export const handler: Handlers<PerfilType[]> = {
 };
 
 export default (props: PageProps<PerfilType[]>) => {
-  const perfiles = props.data;
+  const users = props.data;
 
   return (
     <>
       <MainContainer>
-        <Perfil perfil={perfiles[0]} />
+        <Gallery users={users} />
       </MainContainer>
     </>
   );

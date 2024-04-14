@@ -1,8 +1,7 @@
 import { Handlers } from "$fresh/server.ts";
 import { PageProps } from "$fresh/server.ts";
 import Gallery from "../components/Gallery.tsx";
-import MainContainer from "../components/MainContainer.tsx";
-import UserCard from "../components/UserCard.tsx";
+import GalleryFilter from "../islands/GalleryFilter.tsx";
 import { UserType } from "../types.ts";
 
 export const handler: Handlers<UserType[]> = {
@@ -24,9 +23,7 @@ export default (props: PageProps<UserType[]>) => {
 
   return (
     <>
-      <MainContainer>
-        <Gallery users={users} />
-      </MainContainer>
+      <GalleryFilter users={users} />
     </>
   );
 };

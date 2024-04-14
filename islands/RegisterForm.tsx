@@ -139,7 +139,7 @@ const RegisterForm: FunctionComponent = () => {
           }}
         />
 
-        <button onClick={handleSubmit}>Registrate</button>
+        <button onClick={handleSubmit}>Register</button>
         {error && <p>{error}</p>}
       </div>
     </div>

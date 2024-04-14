@@ -1,5 +1,4 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
-import MainContainer from "../components/MainContainer.tsx";
 import UserFull from "../components/UserFull.tsx";
 import { UserType } from "../types.ts";
 
@@ -23,9 +22,5 @@ export const handler: Handlers<UserType> = {
 export default (props: PageProps<UserType>) => {
   const user = props.data;
 
-  return (
-    <MainContainer>
-      <UserFull user={user} />
-    </MainContainer>
-  );
+  return <UserFull user={user} />;
 };

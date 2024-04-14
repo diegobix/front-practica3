@@ -1,10 +1,7 @@
 import { FunctionComponent } from "preact";
 
-type NavbarProps = {
-  logged: boolean;
-};
-
-const Navbar: FunctionComponent<NavbarProps> = ({ logged }) => {
+const Navbar: FunctionComponent = () => {
+  const logged = localStorage.getItem("name") !== null;
   return (
     <nav>
       <a href="/">

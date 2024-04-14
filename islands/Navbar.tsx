@@ -1,7 +1,13 @@
+import { useEffect, useState } from "preact/hooks";
 import { FunctionComponent } from "preact";
 
 const Navbar: FunctionComponent = () => {
-  const logged = localStorage.getItem("name") !== null;
+  const [logged, setLogged] = useState<boolean>(false);
+
+  useEffect(() => {
+    setLogged(localStorage.getItem("name") !== null);
+  }, []);
+
   return (
     <nav>
       <a href="/">

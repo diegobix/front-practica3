@@ -15,6 +15,7 @@ import * as $login from "./routes/login.tsx";
 import * as $register from "./routes/register.tsx";
 import * as $GalleryFilter from "./islands/GalleryFilter.tsx";
 import * as $LoginForm from "./islands/LoginForm.tsx";
+import * as $Navbar from "./islands/Navbar.tsx";
 import * as $RegisterForm from "./islands/RegisterForm.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
@@ -35,6 +36,7 @@ const manifest = {
   islands: {
     "./islands/GalleryFilter.tsx": $GalleryFilter,
     "./islands/LoginForm.tsx": $LoginForm,
+    "./islands/Navbar.tsx": $Navbar,
     "./islands/RegisterForm.tsx": $RegisterForm,
   },
   baseUrl: import.meta.url,
